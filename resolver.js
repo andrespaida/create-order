@@ -11,8 +11,8 @@ const resolvers = {
   Mutation: {
     async createOrder(_, { userId, productId, quantity }) {
       const [result] = await pool.query(
-        'INSERT INTO orders (userId, productId, quantity) VALUES (?, ?, ?)',
-        [userId, productId, quantity]
+        'INSERT INTO orders (userId, productId, quantity, status) VALUES (?, ?, ?, ?)',
+        [userId, productId, quantity, 'pending']
       );
 
       const [rows] = await pool.query(
